@@ -1,0 +1,371 @@
+object Form1: TForm1
+  Left = 296
+  Height = 561
+  Top = 102
+  Width = 1248
+  Caption = 'Osclilloscope Sim'
+  ClientHeight = 561
+  ClientWidth = 1248
+  OnCreate = FormCreate
+  LCLVersion = '3.2.0.0'
+  object Chart1: TChart
+    Left = 0
+    Height = 561
+    Top = 0
+    Width = 588
+    AxisList = <    
+      item
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelFont.Orientation = 900
+        Title.LabelBrush.Style = bsClear
+      end    
+      item
+        Alignment = calBottom
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelBrush.Style = bsClear
+      end>
+    Title.Text.Strings = (
+      'TAChart'
+    )
+    Align = alClient
+    object oscSeries: TLineSeries
+      LinePen.Color = clRed
+    end
+  end
+  object Panel1: TPanel
+    Left = 928
+    Height = 561
+    Top = 0
+    Width = 170
+    Align = alRight
+    ClientHeight = 561
+    ClientWidth = 170
+    TabOrder = 1
+    object GroupBox2: TGroupBox
+      Left = 1
+      Height = 559
+      Top = 1
+      Width = 168
+      Align = alClient
+      Caption = 'Generator Settings'
+      ClientHeight = 539
+      ClientWidth = 164
+      TabOrder = 0
+      object Button1: TButton
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 164
+        Align = alTop
+        Caption = 'Add'
+        TabOrder = 0
+        OnClick = Button1Click
+      end
+      object Label2: TLabel
+        Left = 0
+        Height = 15
+        Top = 50
+        Width = 164
+        Align = alTop
+        Caption = 'Type'
+      end
+      object cbGenType: TComboBox
+        Left = 0
+        Height = 23
+        Top = 65
+        Width = 164
+        Align = alTop
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          'Sin'
+          'Saw'
+          'Switch'
+        )
+        Style = csDropDownList
+        TabOrder = 1
+        Text = 'Sin'
+      end
+      object Label3: TLabel
+        Left = 0
+        Height = 15
+        Top = 88
+        Width = 164
+        Align = alTop
+        Caption = 'Frequency'
+      end
+      object edtFrequency: TEdit
+        Left = 0
+        Height = 23
+        Top = 103
+        Width = 164
+        Align = alTop
+        TabOrder = 2
+        Text = '10'
+      end
+      object Label4: TLabel
+        Left = 0
+        Height = 15
+        Top = 126
+        Width = 164
+        Align = alTop
+        Caption = 'Amplitude'
+      end
+      object edtAplitude: TEdit
+        Left = 0
+        Height = 23
+        Top = 141
+        Width = 164
+        Align = alTop
+        TabOrder = 3
+        Text = '10'
+      end
+      object Label5: TLabel
+        Left = 0
+        Height = 15
+        Top = 164
+        Width = 164
+        Align = alTop
+        Caption = 'Phase Shift'
+      end
+      object edtShift: TEdit
+        Left = 0
+        Height = 23
+        Top = 179
+        Width = 164
+        Align = alTop
+        TabOrder = 4
+        Text = '0'
+      end
+      object Label6: TLabel
+        Left = 0
+        Height = 15
+        Top = 202
+        Width = 164
+        Align = alTop
+        Caption = 'Behaviour'
+      end
+      object cbGenBehv: TComboBox
+        Left = 0
+        Height = 23
+        Top = 217
+        Width = 164
+        Align = alTop
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          'Add'
+          'Multiply'
+          'Subtract'
+        )
+        Style = csDropDownList
+        TabOrder = 5
+        Text = 'Add'
+      end
+      object Button3: TButton
+        Left = 0
+        Height = 25
+        Top = 25
+        Width = 164
+        Align = alTop
+        Caption = 'Update'
+        TabOrder = 6
+        OnClick = Button3Click
+      end
+    end
+  end
+  object Panel2: TPanel
+    Left = 758
+    Height = 561
+    Top = 0
+    Width = 170
+    Align = alRight
+    ClientHeight = 561
+    ClientWidth = 170
+    TabOrder = 2
+    object GroupBox1: TGroupBox
+      Left = 1
+      Height = 559
+      Top = 1
+      Width = 168
+      Align = alClient
+      Caption = 'Generator List'
+      ClientHeight = 539
+      ClientWidth = 164
+      TabOrder = 0
+      object lbGenerators: TListBox
+        Left = 0
+        Height = 539
+        Top = 0
+        Width = 164
+        Align = alClient
+        ItemHeight = 0
+        TabOrder = 0
+        OnClick = lbGeneratorsClick
+      end
+    end
+  end
+  object Panel3: TPanel
+    Left = 588
+    Height = 561
+    Top = 0
+    Width = 170
+    Align = alRight
+    ClientHeight = 561
+    ClientWidth = 170
+    TabOrder = 3
+    object GroupBox3: TGroupBox
+      Left = 1
+      Height = 559
+      Top = 1
+      Width = 168
+      Align = alClient
+      Caption = 'Oscilloscope Settings'
+      ClientHeight = 539
+      ClientWidth = 164
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 0
+        Height = 15
+        Top = 0
+        Width = 164
+        Align = alTop
+        Caption = 'Data volume'
+        ParentColor = False
+      end
+      object edDataLength: TEdit
+        Left = 0
+        Height = 23
+        Top = 15
+        Width = 164
+        Align = alTop
+        TabOrder = 0
+        Text = '100'
+      end
+      object btnInit: TButton
+        Left = 0
+        Height = 25
+        Top = 76
+        Width = 164
+        Align = alTop
+        Caption = 'Init'
+        TabOrder = 1
+        OnClick = btnInitClick
+      end
+      object btnStart: TButton
+        Left = 0
+        Height = 25
+        Top = 126
+        Width = 164
+        Align = alTop
+        Caption = 'Start/Stop'
+        Enabled = False
+        TabOrder = 2
+        OnClick = btnStartClick
+      end
+      object cbUseLog: TCheckBox
+        Left = 0
+        Height = 19
+        Top = 151
+        Width = 164
+        Align = alTop
+        Caption = 'Log'
+        TabOrder = 3
+      end
+      object cbStatic: TCheckBox
+        Left = 0
+        Height = 19
+        Top = 170
+        Width = 164
+        Align = alTop
+        Caption = 'Static'
+        TabOrder = 4
+      end
+      object Button2: TButton
+        Left = 0
+        Height = 25
+        Top = 101
+        Width = 164
+        Align = alTop
+        Caption = 'Reinit'
+        TabOrder = 5
+        OnClick = Button2Click
+      end
+      object Label7: TLabel
+        Left = 0
+        Height = 15
+        Top = 38
+        Width = 164
+        Align = alTop
+        Caption = 'Tme Scale'
+      end
+      object edTimeScale: TEdit
+        Left = 0
+        Height = 23
+        Top = 53
+        Width = 164
+        Align = alTop
+        TabOrder = 6
+        Text = '1'
+      end
+      object Label8: TLabel
+        Left = 0
+        Height = 15
+        Top = 189
+        Width = 164
+        Align = alTop
+        Caption = 'Interval Base'
+      end
+      object edIntBase: TEdit
+        Left = 0
+        Height = 23
+        Top = 204
+        Width = 164
+        Align = alTop
+        TabOrder = 7
+        Text = '0'
+      end
+      object Label9: TLabel
+        Left = 0
+        Height = 15
+        Top = 227
+        Width = 164
+        Align = alTop
+        Caption = 'Interval Width'
+      end
+      object edIntWidth: TEdit
+        Left = 0
+        Height = 23
+        Top = 242
+        Width = 164
+        Align = alTop
+        TabOrder = 8
+        Text = '20'
+      end
+      object Button4: TButton
+        Left = 0
+        Height = 25
+        Top = 265
+        Width = 164
+        Align = alTop
+        Caption = 'Update Interval'
+        TabOrder = 9
+        OnClick = Button4Click
+      end
+    end
+  end
+  object Memo1: TMemo
+    Left = 1098
+    Height = 561
+    Top = 0
+    Width = 150
+    Align = alRight
+    Lines.Strings = (
+      'Memo1'
+    )
+    TabOrder = 4
+    OnClick = Memo1Click
+  end
+end
