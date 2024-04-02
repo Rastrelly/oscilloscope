@@ -15,23 +15,32 @@ object Form1: TForm1
     Width = 588
     AxisList = <    
       item
+        Grid.Color = clGreen
+        TickColor = clLime
+        TickInnerLength = 4
         Marks.LabelBrush.Style = bsClear
         Minors = <>
         Title.LabelFont.Orientation = 900
         Title.LabelBrush.Style = bsClear
       end    
       item
+        Grid.Color = clGreen
+        TickColor = clLime
+        TickInnerLength = 4
         Alignment = calBottom
         Marks.LabelBrush.Style = bsClear
         Minors = <>
         Title.LabelBrush.Style = bsClear
       end>
+    BackColor = clBlack
+    Frame.Color = clLime
     Title.Text.Strings = (
       'TAChart'
     )
     Align = alClient
     object oscSeries: TLineSeries
       LinePen.Color = clRed
+      LinePen.Width = 2
     end
   end
   object Panel1: TPanel
@@ -66,7 +75,7 @@ object Form1: TForm1
       object Label2: TLabel
         Left = 0
         Height = 15
-        Top = 50
+        Top = 100
         Width = 164
         Align = alTop
         Caption = 'Type'
@@ -74,15 +83,15 @@ object Form1: TForm1
       object cbGenType: TComboBox
         Left = 0
         Height = 23
-        Top = 65
+        Top = 115
         Width = 164
         Align = alTop
         ItemHeight = 15
         ItemIndex = 0
         Items.Strings = (
           'Sin'
-          'Saw'
           'Switch'
+          'Saw'
         )
         Style = csDropDownList
         TabOrder = 1
@@ -91,7 +100,7 @@ object Form1: TForm1
       object Label3: TLabel
         Left = 0
         Height = 15
-        Top = 88
+        Top = 138
         Width = 164
         Align = alTop
         Caption = 'Frequency'
@@ -99,7 +108,7 @@ object Form1: TForm1
       object edtFrequency: TEdit
         Left = 0
         Height = 23
-        Top = 103
+        Top = 153
         Width = 164
         Align = alTop
         TabOrder = 2
@@ -108,7 +117,7 @@ object Form1: TForm1
       object Label4: TLabel
         Left = 0
         Height = 15
-        Top = 126
+        Top = 176
         Width = 164
         Align = alTop
         Caption = 'Amplitude'
@@ -116,7 +125,7 @@ object Form1: TForm1
       object edtAplitude: TEdit
         Left = 0
         Height = 23
-        Top = 141
+        Top = 191
         Width = 164
         Align = alTop
         TabOrder = 3
@@ -125,7 +134,7 @@ object Form1: TForm1
       object Label5: TLabel
         Left = 0
         Height = 15
-        Top = 164
+        Top = 214
         Width = 164
         Align = alTop
         Caption = 'Phase Shift'
@@ -133,7 +142,7 @@ object Form1: TForm1
       object edtShift: TEdit
         Left = 0
         Height = 23
-        Top = 179
+        Top = 229
         Width = 164
         Align = alTop
         TabOrder = 4
@@ -142,7 +151,7 @@ object Form1: TForm1
       object Label6: TLabel
         Left = 0
         Height = 15
-        Top = 202
+        Top = 252
         Width = 164
         Align = alTop
         Caption = 'Behaviour'
@@ -150,7 +159,7 @@ object Form1: TForm1
       object cbGenBehv: TComboBox
         Left = 0
         Height = 23
-        Top = 217
+        Top = 267
         Width = 164
         Align = alTop
         ItemHeight = 15
@@ -173,6 +182,26 @@ object Form1: TForm1
         Caption = 'Update'
         TabOrder = 6
         OnClick = Button3Click
+      end
+      object Button5: TButton
+        Left = 0
+        Height = 25
+        Top = 50
+        Width = 164
+        Align = alTop
+        Caption = 'Move Up'
+        TabOrder = 7
+        OnClick = Button5Click
+      end
+      object Button6: TButton
+        Left = 0
+        Height = 25
+        Top = 75
+        Width = 164
+        Align = alTop
+        Caption = 'Move Down'
+        TabOrder = 8
+        OnClick = Button6Click
       end
     end
   end

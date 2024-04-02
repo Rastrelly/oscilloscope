@@ -22,6 +22,8 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
     Chart1: TChart;
     cbUseLog: TCheckBox;
     cbStatic: TCheckBox;
@@ -58,6 +60,8 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lbGeneratorsClick(Sender: TObject);
     procedure listGenerators;
@@ -85,8 +89,8 @@ type
       timerRef: TTmrRef;
       gType:integer;
       gBehv:integer;
-      frequency,amplitude,phase,peakTime,mult:real;
-      cArgVal,cFuncVal:real;
+      frequency,amplitude,phase,peakTime,peakMult,peakTmr:real;
+      cArgVal,cFuncVal,cDt:real;
       function calcFunction(arg:real):real;
       procedure doTick;
       procedure SetTimer(tmr:TTmrRef);
@@ -107,6 +111,7 @@ type
       cArgVal:real;
       timeScale:real;
       outpSeries:TSeriesRef;
+
       procedure coreRun;
       procedure setTimer(tmr:TTmrRef);
       procedure setSeries(srs:TSeriesRef);
@@ -164,6 +169,7 @@ begin
   oscObj.generators[high(oscObj.generators)].phase:=strtofloat(edtShift.Text);
   oscObj.generators[high(oscObj.generators)].gType:=cbGenType.ItemIndex;
   oscObj.generators[high(oscObj.generators)].gBehv:=cbGenBehv.ItemIndex;
+  oscObj.generators[high(oscObj.generators)].peakTime:=1.0/oscObj.generators[high(oscObj.generators)].frequency;
   listGenerators;
   lbGenerators.ItemIndex:=high(oscObj.generators);
 end;
@@ -191,6 +197,7 @@ begin
   oscObj.generators[lbGenerators.ItemIndex].phase:=strtofloat(edtShift.Text);
   oscObj.generators[lbGenerators.ItemIndex].gType:=cbGenType.ItemIndex;
   oscObj.generators[lbGenerators.ItemIndex].gBehv:=cbGenBehv.ItemIndex;
+  oscObj.generators[lbGenerators.ItemIndex].peakTime:=1/oscObj.generators[lbGenerators.ItemIndex].frequency;
   listGenerators;
   end;
 
@@ -202,6 +209,32 @@ begin
   Chart1.LeftAxis.Range.UseMin:=True;
   Chart1.LeftAxis.Range.Max:=StrToFloat(edIntBase.Text)+StrToFloat(edIntWidth.Text)/2;
   Chart1.LeftAxis.Range.Min:=StrToFloat(edIntBase.Text)-StrToFloat(edIntWidth.Text)/2;
+  Chart1.Extent.UseYMin:=true;
+  Chart1.Extent.UseYMax:=true;
+  Chart1.Extent.YMin:=Chart1.LeftAxis.Range.Min;
+  Chart1.Extent.YMax:=Chart1.LeftAxis.Range.Max;
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+var bGen:TGenerator;
+begin
+  if (lbGenerators.ItemIndex>0) then
+  begin
+    bGen:=oscObj.generators[lbGenerators.ItemIndex];
+    oscObj.generators[lbGenerators.ItemIndex]:=oscObj.generators[lbGenerators.ItemIndex-1];
+    oscObj.generators[lbGenerators.ItemIndex-1]:=bGen;
+  end;
+end;
+
+procedure TForm1.Button6Click(Sender: TObject);
+var bGen:TGenerator;
+begin
+  if (lbGenerators.ItemIndex>-1) and (lbGenerators.ItemIndex<high(oscObj.generators)) then
+  begin
+    bGen:=oscObj.generators[lbGenerators.ItemIndex];
+    oscObj.generators[lbGenerators.ItemIndex]:=oscObj.generators[lbGenerators.ItemIndex+1];
+    oscObj.generators[lbGenerators.ItemIndex+1]:=bGen;
+  end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -255,12 +288,41 @@ begin
 end;
 
 function TGenerator.calcFunction(arg:real):real;
+var cpm:real;
 begin
   //
+  cpm:=0;
   if (gType=0) then
   begin
     result:=amplitude*Sin(frequency*arg+phase);
   end;
+
+  if (gType=1) then
+  begin
+    result:=peakMult*amplitude;
+    peakTmr:=peakTmr - cDt;
+    if peakTmr<=0 then
+    begin
+      if peakMult=1 then peakMult:=0 else peakMult:=1;
+      peakTmr:=peakTime;
+    end;
+  end;
+
+  if (gType=2) then
+  begin
+    if (peakMult=1) then
+      cpm:=peakTmr/peakTime
+    else
+      cpm:=(peakTime-peakTmr)/peakTime;
+    result:=cpm*amplitude;
+    peakTmr:=peakTmr - cDt;
+    if peakTmr<=0 then
+    begin
+      if peakMult=1 then peakMult:=0 else peakMult:=1;
+      peakTmr:=peakTime;
+    end;
+  end;
+
 end;
 
 procedure TGenerator.doTick;
@@ -281,6 +343,7 @@ begin
   amplitude:=10;
   frequency:=10;
   phase:=0;
+  peakTime:=1.0/frequency;
 end;
 
 procedure TOscilloscope.SetTimer(tmr:TTmrRef);
@@ -305,6 +368,7 @@ procedure TOscilloscope.coreRun;
 var i,l:integer;
   cVal:real;
   cPoint:TPoint;
+  currDt:real;
 begin
   if Form1.cbUseLog.Checked then
   Form1.Memo1.Lines.Add('Starting coreRun');
@@ -315,12 +379,13 @@ begin
     if (pause) then Continue;
     cVal:=0;
     l:=length(generators);
-
-    cArgVal:=cArgVal+timerRef^.dt*timeScale;
+    currDt:=timerRef^.dt*timeScale;
+    cArgVal:=cArgVal+currDt;
     timerRef^.runTimer;
     if (l>0) then
     for i:=0 to l-1 do
     begin
+      generators[i].cDt:=currDt;
       generators[i].cArgVal:=cArgVal;
       generators[i].doTick;
       if Form1.cbUseLog.Checked then
