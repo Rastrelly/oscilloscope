@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="50"/>
       </Unit>
       <Unit>
         <Filename Value="uoscilloscope.pas"/>
@@ -22,9 +22,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uOscilloscope"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="232"/>
-        <CursorPos Y="251"/>
-        <UsageCount Value="43"/>
+        <TopLine Value="286"/>
+        <CursorPos X="8" Y="297"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -33,7 +33,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="222"/>
         <CursorPos Y="241"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -41,43 +41,11 @@
         <EditorIndex Value="1"/>
         <TopLine Value="187"/>
         <CursorPos X="23" Y="206"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="123" Column="121" TopLine="111"/>
-      </Position>
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="125" Column="121" TopLine="113"/>
-      </Position>
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="180" Column="3" TopLine="153"/>
-      </Position>
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="154" Column="3" TopLine="152"/>
-      </Position>
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="186" Column="73" TopLine="162"/>
-      </Position>
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="187" Column="73" TopLine="163"/>
-      </Position>
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="188" Column="73" TopLine="164"/>
-      </Position>
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="190" Column="73" TopLine="166"/>
-      </Position>
       <Position>
         <Filename Value="uoscilloscope.pas"/>
         <Caret Line="192" Column="73" TopLine="168"/>
@@ -156,15 +124,47 @@
       </Position>
       <Position>
         <Filename Value="uoscilloscope.pas"/>
-        <Caret Line="201" Column="3" TopLine="202"/>
-      </Position>
-      <Position>
-        <Filename Value="uoscilloscope.pas"/>
         <Caret Line="227" Column="18" TopLine="202"/>
       </Position>
       <Position>
         <Filename Value="uoscilloscope.pas"/>
         <Caret Line="239" Column="18" TopLine="202"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="268" Column="22" TopLine="268"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="247" Column="33" TopLine="232"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="246" TopLine="228"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="248" TopLine="230"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="316" Column="14" TopLine="246"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="219" Column="53" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="290" TopLine="286"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="212" Column="3" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="uoscilloscope.pas"/>
+        <Caret Line="294" Column="66" TopLine="286"/>
       </Position>
     </JumpHistory>
     <RunParams>

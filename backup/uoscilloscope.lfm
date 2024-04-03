@@ -37,7 +37,10 @@ object Form1: TForm1
     Title.Text.Strings = (
       'TAChart'
     )
+    OnAfterPaint = Chart1AfterPaint
     Align = alClient
+    BorderSpacing.CellAlignHorizontal = ccaLeftTop
+    BorderSpacing.CellAlignVertical = ccaLeftTop
     object oscSeries: TLineSeries
       LinePen.Color = clRed
       LinePen.Width = 2
@@ -396,5 +399,11 @@ object Form1: TForm1
     )
     TabOrder = 4
     OnClick = Memo1Click
+  end
+  object Timer1: TTimer
+    Interval = 100
+    OnTimer = Timer1Timer
+    Left = 1000
+    Top = 392
   end
 end

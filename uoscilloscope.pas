@@ -54,6 +54,7 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
+    Timer1: TTimer;
     procedure btnInitClick(Sender: TObject);
     procedure btnStartClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -62,10 +63,12 @@ type
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
+    procedure Chart1AfterPaint(ASender: TChart);
     procedure FormCreate(Sender: TObject);
     procedure lbGeneratorsClick(Sender: TObject);
     procedure listGenerators;
     procedure Memo1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
 
   public
@@ -128,6 +131,7 @@ var
   Form1: TForm1;
   oscObj:TOscilloscope;
   mainTimer:TTimer;
+  xExt:real;
 
 implementation
 
@@ -239,6 +243,11 @@ begin
   listGenerators;
 end;
 
+procedure TForm1.Chart1AfterPaint(ASender: TChart);
+begin
+
+end;
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   Button4.Click;
@@ -272,6 +281,20 @@ end;
 procedure TForm1.Memo1Click(Sender: TObject);
 begin
 
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+  {Chart1.Extent.UseXMax:=true;
+  Chart1.Extent.UseXMin:=true;
+  if (oscObj<>nil) then
+  If oscObj.dataLen>0 then
+  begin
+    if xExt<(oscObj.dataSet[oscObj.dataLen-1].x-oscObj.dataSet[0].x) then
+    xExt:=oscObj.dataSet[oscObj.dataLen-1].x-oscObj.dataSet[0].x;
+    Chart1.Extent.XMin:=oscObj.dataSet[0].x;
+    Chart1.Extent.XMax:=oscObj.dataSet[0].x+xExt;
+  end;}
 end;
 
 function TTimer.getDeltaTime:real;
